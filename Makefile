@@ -9,7 +9,7 @@ source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
-all: dev-setup lint build-js-production install-composer-deps-dev test-php
+all: dev-setup lint build-js-production install-composer-deps-dev
 
 # Dev env management
 dev-setup: clean clean-dev install-npm-deps-dev
@@ -96,3 +96,6 @@ appstore:
 	$(project_directory)/js \
 	$(project_directory)/COPYING \
 	$(project_directory)/CHANGELOG.md
+
+release:
+	zip -r release.zip . -x "node_modules/*" "tests/*" ".github/*" ".git/*"
